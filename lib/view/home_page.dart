@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo/data/data.dart';
+import 'package:todo/data/note_model/note_model.dart';
 import 'package:todo/view/add_edit_page.dart';
 import 'package:todo/view/widgets/note_item.dart';
 
@@ -7,6 +9,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
+      await NoteDB().getAllNotes();
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('TODO'),
@@ -14,25 +19,39 @@ class HomePage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView.separated(
+        child: ValueListenableBuilder(
+          valueListenable: noteListNotifier, 
+          builder: (ctx,List<NoteModel>newNotes,_){
+            if(newNotes.isEmpty){
+              return const Center(
+                child:Text('Note list is empty')
+              );
+            }
+            return ListView.separated(
             itemBuilder: ((context, index) {
+              final note = noteListNotifier.value[index];
+              if (note.id == null) {
+                return const SizedBox(child:Text('oombiii'));
+              }
               return NoteItem(
-                  id: index,
-                  title: 'New Note',
-                  note:
-                      'New note added now. If you want to update tap here to go to edit screen. All features are done by http methods and will be updated sooon');
+                  id: note.id!,
+                  title: note.title??'No title !!',
+                  note: note.content??'No content !!');
             }),
             separatorBuilder: (ctx, index) {
               return const SizedBox(height: 2);
             },
-            itemCount: 10),
+            itemCount: newNotes.length
+            );
+          }
+          )
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 10.0),
         child: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (ctx) =>  AddAndEditPage(
+                builder: (ctx) => AddAndEditPage(
                       type: ActionType.addNote,
                     )));
           },
