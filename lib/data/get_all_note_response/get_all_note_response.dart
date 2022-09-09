@@ -9,7 +9,7 @@ class GetAllNoteResponse {
 
   GetAllNoteResponse({this.data = const []});
 
-  factory GetAllNoteResponse.fromJson(Map<String, dynamic> json) {
+  factory GetAllNoteResponse.fromJson(Map<String,dynamic> json) {
     return _$GetAllNoteResponseFromJson(json);
   }
 

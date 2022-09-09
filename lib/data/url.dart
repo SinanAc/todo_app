@@ -6,17 +6,3 @@ class Url {
   String deleteNote = '/note/delete/{id}';
   String getAllNote = '/note/getAll';
 }
-// {
-// "data":[
-// {
-//   "_id": "id02",
-//   "title": "Daily",
-//   "content": "sample content"
-// },
-// {
-//   "_id": "id02",
-//   "title": "Daily",
-//   "content": "sample content"
-// }
-// ]
-// }

@@ -23,7 +23,7 @@ class NoteItem extends StatelessWidget {
         );
       },
       child: Card(
-        color: const Color.fromARGB(255, 185, 237, 250),
+        color: const Color.fromARGB(255, 184, 232, 244),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(

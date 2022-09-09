@@ -131,7 +131,7 @@ class AddAndEditPage extends StatelessWidget {
       ScaffoldMessenger.of(ctx).showSnackBar(
         const SnackBar(
           content: Text(
-            'Error while editing note',
+            'Error while editing note !!',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.bold,

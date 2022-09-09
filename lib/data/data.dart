@@ -1,5 +1,6 @@
-import 'dart:convert';
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:todo/data/get_all_note_response/get_all_note_response.dart';
@@ -15,14 +16,6 @@ abstract class ApiCalls {
 }
   ValueNotifier<List<NoteModel>> noteListNotifier = ValueNotifier([]);
 class NoteDB implements ApiCalls {
-
-  // --> creating singleton
-  // NoteDB.internal();
-  // static NoteDB instance = NoteDB.internal();
-  // NoteDB fac(){
-  //   return instance;
-  // }
-  // === end of singleton ===
   final dio = Dio();
   final url = Url();
 

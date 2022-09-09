@@ -24,14 +24,14 @@ class HomePage extends StatelessWidget {
           builder: (ctx,List<NoteModel>newNotes,_){
             if(newNotes.isEmpty){
               return const Center(
-                child:Text('Note list is empty')
+                child:Text('Note list is empty !!')
               );
             }
             return ListView.separated(
             itemBuilder: ((context, index) {
               final note = noteListNotifier.value[index];
               if (note.id == null) {
-                return const SizedBox(child:Text('oombiii'));
+                return const SizedBox();
               }
               return NoteItem(
                   id: note.id!,
